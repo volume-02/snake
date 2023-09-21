@@ -1,1 +1,1 @@
-/Users/boris/dev/projects/plan_b/solid snake
+/Users/boris/dev/projects/plan_b/snake

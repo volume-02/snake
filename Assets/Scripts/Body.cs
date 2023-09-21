@@ -34,10 +34,6 @@ public class Body : MonoBehaviour
         float horizontalInput = next.transform.position.x - transform.position.x ;
         float verticalInput = next.transform.position.z - transform.position.z;
 
-
-
-        Debug.Log($"horiz: {horizontalInput}, vert: {verticalInput}");
-
         horizontalInput = Mathf.Abs(horizontalInput) < 0.1 ? 0 : horizontalInput;
         verticalInput = Mathf.Abs(verticalInput) < 0.1 ? 0 : verticalInput;
 
