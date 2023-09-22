@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     private Vector3 headDirection = Vector3.forward;
     public GameObject BodyPrefab;
     private GameObject tail;
-    public SnakeGenerator gen;
+    public GameObject tailObject;
 
 
     private Vector3 tailDirection;
@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     {
         rend = GetComponent<MeshRenderer>();
         tail = gameObject;
+        rend.enabled = false;
     }
 
     // Update is called once per frame
@@ -73,13 +74,14 @@ public class Player : MonoBehaviour
             bodyScript.next = tail;
             newBody.transform.parent = transform.parent;
             tail = newBody;
+            tailObject.transform.parent = tail.transform;
+            tailObject.transform.localPosition = Vector3.zero;
+            tailObject.transform.localRotation = Quaternion.identity;
 
             //other.gameObject.SetActive(false);
             Destroy(other.gameObject);
 
-            gen.AddRopePoint(newBody.transform);
             Debug.Log("collision");
-            rend.enabled = false;
         }
     }
 

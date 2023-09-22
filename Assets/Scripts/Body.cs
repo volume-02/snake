@@ -17,7 +17,7 @@ public class Body : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var offsetValue = GetComponent<MeshRenderer>().bounds.size.x;
+        var offsetValue = GetComponent<MeshRenderer>().bounds.size.x * 2;
         var diff = next.transform.position - transform.position;
         var diggLength = diff.magnitude;
         transform.LookAt(next.transform);

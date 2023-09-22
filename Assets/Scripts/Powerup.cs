@@ -22,7 +22,7 @@ public class Powerup : MonoBehaviour
 
     IEnumerator DestroyPowerup()
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(20);
         Destroy(gameObject);
     }
 }
