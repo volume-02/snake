@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public GameObject BodyPrefab;
     private GameObject tail;
 
+
     private Vector3 tailDirection;
     // Start is called before the first frame update
     void Start()
@@ -66,6 +67,11 @@ public class Player : MonoBehaviour
             var bodyScript = newBody.GetComponent<Body>();
             bodyScript.next = tail;
             tail = newBody;
+
+            //other.gameObject.SetActive(false);
+            Destroy(other.gameObject);
+
+            Debug.Log("collision");
         }
     }
 
