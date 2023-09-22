@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    MeshRenderer rend;
     public float speed = 5;
     private Vector3 headDirection = Vector3.forward;
     public GameObject BodyPrefab;
     private GameObject tail;
+    public SnakeGenerator gen;
 
 
     private Vector3 tailDirection;
     // Start is called before the first frame update
     void Start()
     {
+        rend = GetComponent<MeshRenderer>();
         tail = gameObject;
     }
 
@@ -49,7 +52,9 @@ public class Player : MonoBehaviour
             headDirection = Vector3.left;
         }
 
-        transform.Translate(headDirection * speed * Time.deltaTime);
+        transform.rotation = Quaternion.LookRotation(headDirection);
+
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
     private Vector3 CalculateOffset()
@@ -66,12 +71,15 @@ public class Player : MonoBehaviour
             var newBody = Instantiate(BodyPrefab, CalculateOffset(), Quaternion.identity);
             var bodyScript = newBody.GetComponent<Body>();
             bodyScript.next = tail;
+            newBody.transform.parent = transform.parent;
             tail = newBody;
 
             //other.gameObject.SetActive(false);
             Destroy(other.gameObject);
 
+            gen.AddRopePoint(newBody.transform);
             Debug.Log("collision");
+            rend.enabled = false;
         }
     }
 

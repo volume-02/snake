@@ -10,16 +10,19 @@ public class Body : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var rend = GetComponent<MeshRenderer>();
+        rend.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var offsetValue = GetComponent<MeshRenderer>().bounds.size.x / 2;
+        var offsetValue = GetComponent<MeshRenderer>().bounds.size.x;
         var diff = next.transform.position - transform.position;
-        var trans = diff - diff.normalized * offsetValue;
-        transform.Translate(trans);
+        var diggLength = diff.magnitude;
+        transform.LookAt(next.transform);
+        transform.Translate(Vector3.forward * (diggLength - offsetValue));
 
-        direction = diff.normalized;
+        direction = transform.forward;
     }
 }
