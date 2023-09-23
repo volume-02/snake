@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public AudioSource pickupSound;
+    public AudioSource bumpIntoSound;
     MeshRenderer rend;
     public float speed = 5;
     public GameObject BodyPrefab;
@@ -94,6 +96,7 @@ public class Player : MonoBehaviour
 
             speed += 0.2f;
             Destroy(other.gameObject);
+            pickupSound.Play();
         }
 
         if (other.CompareTag("Body") &&
@@ -102,6 +105,7 @@ public class Player : MonoBehaviour
             )
         {
             speed = 0;
+            bumpIntoSound.Play();
         }
     }
 
