@@ -6,13 +6,16 @@ public class Player : MonoBehaviour
 {
     MeshRenderer rend;
     public float speed = 5;
-    private Vector3 headDirection = Vector3.forward;
     public GameObject BodyPrefab;
-    private GameObject tail;
     public GameObject tailObject;
 
+    float prevSpeed;
+    Vector3 headDirection = Vector3.forward;
+    GameObject tail;
 
-    private Vector3 tailDirection;
+    int bodyCount = 1;
+
+    Vector3 tailDirection;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,16 @@ public class Player : MonoBehaviour
     {
         MoveHead();
         tailDirection = tail?.GetComponent<Body>()?.direction ?? headDirection;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            prevSpeed = speed;
+            speed *= 2;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            speed = prevSpeed;
+        }
 
     }
 
@@ -73,15 +86,23 @@ public class Player : MonoBehaviour
             var bodyScript = newBody.GetComponent<Body>();
             bodyScript.next = tail;
             newBody.transform.parent = transform.parent;
+            bodyScript.id = bodyCount;
+            bodyCount++;
             tail = newBody;
             tailObject.transform.parent = tail.transform;
             tailObject.transform.localPosition = Vector3.zero;
             tailObject.transform.localRotation = Quaternion.identity;
 
-            //other.gameObject.SetActive(false);
+            speed += 0.2f;
             Destroy(other.gameObject);
+        }
 
-            Debug.Log("collision");
+        if (other.CompareTag("Body") &&
+            other.GetComponent<Body>().id != 1 &&
+            other.GetComponent<Body>().id != 2
+            )
+        {
+            speed = 0;
         }
     }
 

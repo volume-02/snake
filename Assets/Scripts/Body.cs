@@ -6,6 +6,7 @@ public class Body : MonoBehaviour
 {
     public GameObject next;
     public Vector3 direction;
+    public int id;
 
     // Start is called before the first frame update
     void Start()
