@@ -115,7 +115,7 @@ public class SnakeSkin : MonoBehaviour
         if (transform.childCount > 3)
         {
             var pieces = (transform.childCount - 2) / 2;
-            var splint = 1f / pieces;
+            var splint = 0.5f / pieces;
             float size = 0;
             int i = 1;
             for (; i < 1 + pieces; i++)
