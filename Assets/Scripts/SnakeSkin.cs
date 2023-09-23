@@ -82,7 +82,7 @@ public class SnakeSkin : MonoBehaviour
         filter.mesh.bindposes = bindPoses.ToArray();
 
         rend.sharedMesh = filter.mesh;
-        rend.material.mainTextureScale = new Vector2(transform.childCount, 1);
+        rend.material.mainTextureScale = new Vector2(0.3f * transform.childCount, 1);
         rend.bones = bones.ToArray();
     }
 
@@ -112,6 +112,32 @@ public class SnakeSkin : MonoBehaviour
         CalculateUV();
         CalculateMesh();
         prevCount = transform.childCount;
+        if (transform.childCount > 3)
+        {
+            var pieces = (transform.childCount - 2) / 2;
+            var splint = 1f / pieces;
+            float size = 0;
+            int i = 1;
+            for (; i < 1 + pieces; i++)
+            {
+                var child = transform.GetChild(i);
+                size += splint;
+                child.localScale = new Vector3(1.5f+size, 1.5f + size, 1.5f + size);
+
+            }
+            if((transform.childCount - 2) % 2 > 0)
+            {
+                i++;
+                var child = transform.GetChild(i);
+                child.localScale = new Vector3(1.5f + size, 1.5f + size, 1.5f + size);
+            }
+            for (; i < transform.childCount - 1; i++)
+            {
+                var child = transform.GetChild(i);
+                child.localScale = new Vector3(1.5f + size, 1.5f + size, 1.5f + size);
+                size -= splint;
+            }
+        }
     }
 
     private void FixedUpdate()

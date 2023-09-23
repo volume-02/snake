@@ -178,7 +178,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 905342afb30344e4cb267d063af7727c, type: 2}
+  - {fileID: 2100000, guid: d3c81bc108012ba488ccdcf3504f730d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   edgeCount: 36
-  radius: 1
+  radius: 0.64
 --- !u!1 &204967965
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,15 +520,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: cb6d2726229873342912010d564db89e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.056794964
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb6d2726229873342912010d564db89e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.056794964
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb6d2726229873342912010d564db89e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.056794964
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb6d2726229873342912010d564db89e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -797,7 +797,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d3c81bc108012ba488ccdcf3504f730d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -882,8 +882,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 2.4391332}
+  m_Center: {x: 0, y: 0, z: 0.71956563}
 --- !u!23 &1836130202
 MeshRenderer:
   m_ObjectHideFlags: 0

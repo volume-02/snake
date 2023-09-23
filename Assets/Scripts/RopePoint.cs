@@ -17,8 +17,8 @@ public class RopePoint : MonoBehaviour
         for (int i = 0; i < parent.edgeCount; i++)
         {
             float angle = i * 360f / parent.edgeCount;
-            var x = transform.position.x + parent.radius * Mathf.Cos(Mathf.Deg2Rad * angle);
-            var y = transform.position.y + parent.radius * Mathf.Sin(Mathf.Deg2Rad * angle);
+            var x = transform.position.x + parent.radius * Mathf.Cos(Mathf.Deg2Rad * (angle-90));
+            var y = transform.position.y + 0.8f*parent.radius * Mathf.Sin(Mathf.Deg2Rad * (angle - 90));
 
             circleVerticies.Add(new Vector3(x, y, transform.position.z));
             var w = new BoneWeight();
