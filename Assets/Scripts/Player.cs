@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    MeshRenderer rend;
     public float speed = 5;
     private Vector3 headDirection = Vector3.forward;
     public GameObject BodyPrefab;
     private GameObject tail;
+    public GameObject tailObject;
 
 
     private Vector3 tailDirection;
     // Start is called before the first frame update
     void Start()
     {
+        rend = GetComponent<MeshRenderer>();
         tail = gameObject;
+        rend.enabled = false;
     }
 
     // Update is called once per frame
@@ -49,7 +53,9 @@ public class Player : MonoBehaviour
             headDirection = Vector3.left;
         }
 
-        transform.Translate(headDirection * speed * Time.deltaTime);
+        transform.rotation = Quaternion.LookRotation(headDirection);
+
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
     private Vector3 CalculateOffset()
@@ -66,7 +72,11 @@ public class Player : MonoBehaviour
             var newBody = Instantiate(BodyPrefab, CalculateOffset(), Quaternion.identity);
             var bodyScript = newBody.GetComponent<Body>();
             bodyScript.next = tail;
+            newBody.transform.parent = transform.parent;
             tail = newBody;
+            tailObject.transform.parent = tail.transform;
+            tailObject.transform.localPosition = Vector3.zero;
+            tailObject.transform.localRotation = Quaternion.identity;
 
             //other.gameObject.SetActive(false);
             Destroy(other.gameObject);
