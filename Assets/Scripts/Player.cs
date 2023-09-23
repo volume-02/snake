@@ -66,9 +66,8 @@ public class Player : MonoBehaviour
             headDirection = Vector3.left;
         }
 
-        transform.rotation = Quaternion.LookRotation(headDirection);
-
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(headDirection), 180*Time.deltaTime);
+        transform.Translate(headDirection * speed * Time.deltaTime, Space.World);
     }
 
     private Vector3 CalculateOffset()
